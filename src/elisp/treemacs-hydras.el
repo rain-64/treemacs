@@ -141,6 +141,7 @@ find the key a command is bound to it will show a blank instead."
              (key-show-gitignore (treemacs--find-keybind #'treemacs-hide-gitignored-files-mode))
              (key-toggle-width   (treemacs--find-keybind #'treemacs-toggle-fixed-width))
              (key-arrow-keys     (treemacs--find-keybind #'treemacs-arrow-keys-mode))
+             (key-git-status-ind (treemacs--find-keybind #'treemacs-git-status-indicator-mode))
              (key-add-project    (treemacs--find-keybind #'treemacs-add-project-to-workspace 12))
              (key-remove-project (treemacs--find-keybind #'treemacs-remove-project-from-workspace 12))
              (key-rename-project (treemacs--find-keybind #'treemacs-rename-project 12))
@@ -163,7 +164,7 @@ find the key a command is bound to it will show a blank instead."
 %s root down        ^^^^│ %s open mru window     ^^^^│ %s top scroll indicator  ^^^^│
                         │ %s open externally     ^^^^│ %s git commit difference ^^^^│
                         │ %s open close treemacs ^^^^│ %s arrow keys            ^^^^│
-                        │ %s close parent        ^^^^│                              │
+                        │ %s close parent        ^^^^│ %s git status indicator  ^^^^│
 "
                title
                adv-hint (car (s-split":" (car key-adv-hydra)))
@@ -179,7 +180,7 @@ find the key a command is bound to it will show a blank instead."
                (car key-root-down)      (car key-open-mru)    (car key-header-mode)
                                         (car key-open-ext)    (car key-commit-diff)
                                         (car key-open-close)  (car key-arrow-keys)
-                                        (car key-close-above))))
+                                        (car key-close-above) (car key-git-status-ind))))
           (eval
            `(defhydra treemacs--common-helpful-hydra (:exit nil :hint nil :columns 4)
               ,hydra-str
@@ -216,6 +217,7 @@ find the key a command is bound to it will show a blank instead."
               (,(cdr key-git-mode)       #'treemacs-git-mode)
               (,(cdr key-fwatch-mode)    #'treemacs-filewatch-mode)
               (,(cdr key-arrow-keys)     #'treemacs-arrow-keys-mode)
+              (,(cdr key-git-status-ind) #'treemacs-git-status-indicator-mode)
               (,(cdr key-add-project)    #'treemacs-add-project-to-workspace)
               (,(cdr key-remove-project) #'treemacs-remove-project-from-workspace)
               (,(cdr key-rename-project) #'treemacs-rename-project)
